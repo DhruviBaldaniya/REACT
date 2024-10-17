@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // To navigate between routes
-import { Link } from 'react-router-dom'; // Import Link from react-router-dom
 
 const Login = () => {
   const [user, setUser] = useState({
@@ -24,9 +23,10 @@ const Login = () => {
 
     // Get the registration data from localStorage
     const storedData = JSON.parse(localStorage.getItem('registrationData'));
+    console.log(storedData);
 
     if (storedData) {
-      // Check if the entered username and password match the stored data
+      // Check if the entered username (email) and password match the stored data
       if (user.username === storedData.email && user.password === storedData.password) {
         // Successful login, navigate to the home page
         navigate('/home');
@@ -79,7 +79,7 @@ const Login = () => {
             </div>
           </div>
           {error && <div className="text-red-500 text-center">{error}</div>}
-          <div className="pl-2 mt-7 text-black text-lg">Forgot password?</div>
+          <div className="pl-2 mt-7 text-black text-lg text-purple-700 cursor-pointer">Forgot password?</div>
           <div className="flex justify-center mt-10">
             <button
               type="submit"
@@ -89,11 +89,11 @@ const Login = () => {
             </button>
           </div>
           <div className="pl-14 mt-7 text-black text-lg">
-  Don't have an account?{" "}
-  <span className="cursor-pointer">
-    <Link to="/registration" className="text-purple-700">Register</Link> {/* Apply Tailwind primary color */}
-  </span>
-</div>
+            Don't have an account?{" "}
+            <span className="cursor-pointer text-purple-700">
+              <a href="./registration">Register</a>
+            </span>
+          </div>
         </form>
       </div>
     </div>
