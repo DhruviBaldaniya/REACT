@@ -1,64 +1,86 @@
 import React, { useState, useEffect } from 'react';
 
 const Home = () => {
-  const [registrationData, setRegistrationData] = useState(null);
+  const [registrationData, setRegistrationData] = useState([]);
   const [isEditing, setIsEditing] = useState(false);
   const [editedData, setEditedData] = useState(null);
+  const [editingIndex, setEditingIndex] = useState(null);
 
   useEffect(() => {
-    const savedData = localStorage.getItem("registrationData");
-    if (savedData) {
-      setRegistrationData(JSON.parse(savedData));
-    }
+    // Fetch the list of users from localStorage
+    const savedData = JSON.parse(localStorage.getItem('registrationData')) || [];
+    setRegistrationData(savedData);
   }, []);
 
-  const handleDelete = () => {
-    localStorage.removeItem("registrationData");
-    setRegistrationData(null);
+  const handleDelete = (index) => {
+    const updatedData = registrationData.filter((_, i) => i !== index);
+    localStorage.setItem('registrationData', JSON.stringify(updatedData));
+    setRegistrationData(updatedData);
   };
 
-  const handleEdit = () => {
+  const handleEdit = (index) => {
     setIsEditing(true);
-    setEditedData({ ...registrationData });
+    setEditingIndex(index);
+    setEditedData({ ...registrationData[index] });
   };
 
   const handleSave = () => {
-    localStorage.setItem("registrationData", JSON.stringify(editedData));
-    setRegistrationData(editedData);
+    const updatedData = [...registrationData];
+    updatedData[editingIndex] = editedData;
+    localStorage.setItem('registrationData', JSON.stringify(updatedData));
+    setRegistrationData(updatedData);
     setIsEditing(false);
+    setEditingIndex(null);
   };
 
   const handleChange = (e) => {
+    const { name, value } = e.target;
     setEditedData({
       ...editedData,
-      [e.target.name]: e.target.value,
+      [name]: value,
     });
   };
 
+  const handleLogout = () => {
+    // Perform logout logic without clearing the table data
+    alert("Logged out!");
+    // Redirect to the login page without clearing localStorage
+    window.location.href = "/login"; // Adjust the path as necessary
+  };
+
   return (
-    <div className="w-full flex justify-center  min-h-screen p-5">
-      <div className="w-full max-w-8xl bg-white shadow-md rounded-lg">
-        <h1 className="text-4xl font-bold text-purple-700 text-center mb-6">User Data Table</h1>
-          <table className="min-w-full mx-auto border-collapse table-auto">
-            <thead>
-              <tr>
-                <th className="px-4 py-2 border bg-purple-700 text-white">FirstName</th>
-                <th className="px-4 py-2 border bg-purple-700 text-white">LastName</th>
-                <th className="px-4 py-2 border bg-purple-700 text-white">Email</th>
-                <th className="px-4 py-2 border bg-purple-700 text-white">PhoneNumber</th>
-                <th className="px-4 py-2 border bg-purple-700 text-white">Gender</th>
-                <th className="px-4 py-2 border bg-purple-700 text-white">DateofBirth</th>
-                <th className="px-4 py-2 border bg-purple-700 text-white">Country</th>
-                <th className="px-4 py-2 border bg-purple-700 text-white">City</th>
-                <th className="px-4 py-2 border bg-purple-700 text-white">Address</th>
-                <th className="px-4 py-2 border bg-purple-700 text-white">Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {registrationData ? (
-                <tr className="hover:bg-gray-200">
+    <div className="w-full flex justify-center min-h-screen p-5 relative">
+      {/* Logout button in the top-right corner */}
+      <button
+        className="absolute top-4 right-6 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-purple-600 transition"
+        onClick={handleLogout}
+      >
+        Logout
+      </button>
+
+      <div className="w-full max-w-8xl bg-white">
+        <h1 className="text-4xl font-bold text-purple-700 text-center mb-6 mt-14">User Data Table</h1>
+        <table className="min-w-full mx-auto border-collapse table-auto">
+          <thead>
+            <tr>
+              <th className="px-4 py-2 border bg-purple-700 text-white">Firstname</th>
+              <th className="px-4 py-2 border bg-purple-700 text-white">Lastname</th>
+              <th className="px-4 py-2 border bg-purple-700 text-white">Email</th>
+              <th className="px-4 py-2 border bg-purple-700 text-white">Phone</th>
+              <th className="px-4 py-2 border bg-purple-700 text-white">Gender</th>
+              <th className="px-4 py-2 border bg-purple-700 text-white">DOB</th>
+              <th className="px-4 py-2 border bg-purple-700 text-white">Country</th>
+              <th className="px-4 py-2 border bg-purple-700 text-white">City</th>
+              <th className="px-4 py-2 border bg-purple-700 text-white">Address</th>
+              <th className="px-4 py-2 border bg-purple-700 text-white">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {registrationData.length > 0 ? (
+              registrationData.map((user, index) => (
+                <tr key={index} className="hover:bg-gray-200">
                   <td className="px-4 py-2 border">
-                    {isEditing ? (
+                    {isEditing && editingIndex === index ? (
                       <input
                         type="text"
                         name="firstname"
@@ -67,11 +89,11 @@ const Home = () => {
                         className="w-full border"
                       />
                     ) : (
-                      registrationData.firstname
+                      user.firstname
                     )}
                   </td>
                   <td className="px-4 py-2 border">
-                    {isEditing ? (
+                    {isEditing && editingIndex === index ? (
                       <input
                         type="text"
                         name="lastname"
@@ -80,11 +102,11 @@ const Home = () => {
                         className="w-full border"
                       />
                     ) : (
-                      registrationData.lastname
+                      user.lastname
                     )}
                   </td>
                   <td className="px-4 py-2 border">
-                    {isEditing ? (
+                    {isEditing && editingIndex === index ? (
                       <input
                         type="email"
                         name="email"
@@ -93,7 +115,7 @@ const Home = () => {
                         className="w-full border"
                       />
                     ) : (
-                      registrationData.email
+                      user.email
                     )}
                   </td>
                   <td className="px-4 py-2 border">
@@ -106,7 +128,7 @@ const Home = () => {
                         className="w-full border"
                       />
                     ) : (
-                      registrationData.phone
+                      user.phone
                     )}
                   </td>
                   <td className="px-4 py-2 border">
@@ -119,7 +141,7 @@ const Home = () => {
                         className="w-full border"
                       />
                     ) : (
-                      registrationData.gender
+                      user.gender
                     )}
                   </td>
                   <td className="px-4 py-2 border">
@@ -132,7 +154,7 @@ const Home = () => {
                         className="w-full border"
                       />
                     ) : (
-                      registrationData.dob
+                      user.dob
                     )}
                   </td>
                   <td className="px-4 py-2 border">
@@ -145,7 +167,7 @@ const Home = () => {
                         className="w-full border"
                       />
                     ) : (
-                      registrationData.country
+                      user.country
                     )}
                   </td>
                   <td className="px-4 py-2 border">
@@ -158,7 +180,7 @@ const Home = () => {
                         className="w-full border"
                       />
                     ) : (
-                      registrationData.city
+                      user.city
                     )}
                   </td>
                   <td className="px-4 py-2 border">
@@ -171,45 +193,47 @@ const Home = () => {
                         className="w-full border"
                       />
                     ) : (
-                      registrationData.address
+                      user.address
                     )}
                   </td>
                   <td className="px-4 py-2 border">
-                    {isEditing ? (
-                      <button
-                        className="bg-green-500 text-white px-4 py-2 rounded mr-2"
-                        onClick={handleSave}
-                      >
-                        Save
-                      </button>
-                    ) : (
-                      <div className="flex space-x-2">
+                    <div className="flex space-x-2">
+                      {isEditing && editingIndex === index ? (
                         <button
-                          className="bg-blue-500 text-white px-4 py-2 rounded"
-                          onClick={handleEdit}
+                          className="bg-green-500 text-white px-4 py-2 rounded"
+                          onClick={handleSave}
                         >
-                          Edit
+                          Save
                         </button>
-                        <button
-                          className="bg-red-500 text-white px-4 py-2 rounded"
-                          onClick={handleDelete}
-                        >
-                          Delete
-                        </button>
-                      </div>
-                    )}
+                      ) : (
+                        <>
+                          <button
+                            className="bg-blue-500 text-white px-4 py-2 rounded"
+                            onClick={() => handleEdit(index)}
+                          >
+                            Edit
+                          </button>
+                          <button
+                            className="bg-red-500 text-white px-4 py-2 rounded"
+                            onClick={() => handleDelete(index)}
+                          >
+                            Delete
+                          </button>
+                        </>
+                      )}
+                    </div>
                   </td>
                 </tr>
-              ) : (
-                <tr>
-                  <td colSpan="10" className="px-4 py-2 border text-center">
-                    No data available
-                  </td>
-                </tr>
-              )}
-            </tbody>
-          </table>
-       
+              ))
+            ) : (
+              <tr>
+                <td colSpan="10" className="px-4 py-2 border text-center">
+                  No data available
+                </td>
+              </tr>
+            )}
+          </tbody>
+        </table>
       </div>
     </div>
   );

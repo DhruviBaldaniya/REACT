@@ -6,21 +6,19 @@ const Registration = () => {
     firstname: '',
     lastname: '',
     email: '',
-    phone: '', // this is correct
+    phone: '',
     gender: '',
-    dob: '', // changed from dob to dateofbirth
+    dob: '',
     country: '',
     city: '',
     address: '',
     password: '',
   });
-  
 
-  const [countries, setCountries] = useState([]); // Store selected country list
-  const [cities, setCities] = useState([]); // Store city list based on selected country
+  const [countries, setCountries] = useState([]);
+  const [cities, setCities] = useState([]);
   const navigate = useNavigate();
 
-  // Manually set the list of countries
   const selectedCountries = [
     { code: 'IN', name: 'India' },
     { code: 'US', name: 'United States' },
@@ -29,39 +27,36 @@ const Registration = () => {
     { code: 'CA', name: 'Canada' },
   ];
 
-  // Set the selected countries on component mount
   useEffect(() => {
     setCountries(selectedCountries);
   }, []);
 
-  // Handle country change and set cities based on selected country
   const handleCountryChange = (e) => {
     const selectedCountry = e.target.value;
     setFormData((prevData) => ({
       ...prevData,
       country: selectedCountry,
-      city: '', // Reset city when country changes
+      city: '',
     }));
 
-    // Set cities for the selected country
     switch (selectedCountry) {
-      case 'IN': // India
+      case 'IN':
         setCities(['Mumbai', 'Delhi', 'Bangalore', 'Ahmedabad']);
         break;
-      case 'US': // USA
+      case 'US':
         setCities(['New York', 'Los Angeles', 'Chicago', 'San Francisco']);
         break;
-      case 'GB': // United Kingdom
+      case 'UK':
         setCities(['London', 'Manchester', 'Birmingham']);
         break;
-      case 'AU': // Australia
+      case 'AU':
         setCities(['Sydney', 'Melbourne', 'Brisbane']);
         break;
-      case 'CA': // Canada
+      case 'CA':
         setCities(['Toronto', 'Vancouver', 'Montreal']);
         break;
       default:
-        setCities([]); // Reset cities if no country selected
+        setCities([]);
     }
   };
 
@@ -75,21 +70,31 @@ const Registration = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    let existingUsers = [];
 
-    // Save registration data to localStorage
-    localStorage.setItem('registrationData', JSON.stringify(formData));
+    try {
+      const storedData = localStorage.getItem('registrationData');
+      existingUsers = storedData ? JSON.parse(storedData) : [];
 
-    // Redirect to the login page
+      if (!Array.isArray(existingUsers)) {
+        existingUsers = [];
+      }
+    } catch (error) {
+      console.error("Error parsing registrationData from localStorage", error);
+      existingUsers = [];
+    }
+
+    const updatedUsers = [...existingUsers, formData];
+    localStorage.setItem('registrationData', JSON.stringify(updatedUsers));
+
+    // Redirect to login page after registration
     navigate('/login');
   };
 
   return (
     <div className='w-full max-w-lg mx-auto p-6 bg-white rounded-lg shadow-lg'>
       <form onSubmit={handleSubmit}>
-        <div className="mb-6 flex flex-col items-center mt-5">
-          <div className="text-4xl font-bold text-purple-700">Registration</div>
-          <div className="w-16 h-1 bg-purple-700 rounded-full mt-2"></div>
-        </div>
+        <h2 className="text-4xl font-bold text-purple-700 text-center mb-6">Registration</h2>
         <div className='flex flex-col gap-4'>
           <label className='text-lg font-semibold'>First Name:</label>
           <input type='text' name='firstname' placeholder='First Name' value={formData.firstname} onChange={handleChange} required className='p-3 border' />
@@ -142,11 +147,12 @@ const Registration = () => {
           <label className='text-lg font-semibold'>
             <input type='checkbox' className='mr-2' required /> Terms and Conditions
           </label>
-
-          <button type='submit' className='px-4 py-2 bg-purple-700 text-white'>
-            Register
-          </button>
         </div>
+        <div className="flex justify-end mt-4">
+        <button type='submit' className='px-9 py-3 rounded-lg bg-purple-700 text-white'>
+          Register
+        </button>
+      </div>
       </form>
     </div>
   );
