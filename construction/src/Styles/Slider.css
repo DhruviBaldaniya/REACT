@@ -1,0 +1,187 @@
+.slider-container {
+  background-color: #f9f9f9;
+  color: #111;
+  padding: 20px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Header Section */
+.header-slider {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 620px;
+  margin-bottom: 30px;
+  justify-content: center;
+}
+
+.slider-title {
+  font-size: 23px;
+  border-bottom: 3px solid #ffc107;
+  padding-bottom: 5px;
+  margin: 0;
+}
+
+/* Slider Buttons */
+.slider-buttons {
+  display: flex;
+}
+
+.slider-btn {
+  background-color: #ffc107;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  transition: background-color 0.3s ease;
+}
+
+.slider-btn:hover {
+  background-color: #e0a906;
+}
+
+/* Slider Works */
+.slider-works {
+  display: flex;
+  gap: 20px;
+  overflow: hidden;
+  scroll-behavior: smooth;
+  width: 100%;
+}
+
+.slider-item {
+  flex: 0 0 auto;
+  width: 300px;
+  text-align: center;
+  overflow: hidden;
+}
+
+.slider-image {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  display: block;
+}
+
+/* Footer Buttons */
+.footer-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.footer-btn {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.primary-btn {
+  background-color: white;
+  color: #ffa500;
+  font-weight: bold;
+}
+
+.primary-btn:hover {
+  background-color: #ffcc66;
+  color: white;
+}
+
+.secondary-btn {
+  background-color: #333;
+  color: white;
+}
+
+.secondary-btn:hover {
+  background-color: #555;
+}
+
+/* Responsive Design */
+@media only screen and (max-width: 480px) {
+  .header-slider {
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    text-align: center;
+  }
+
+  .slider-works {
+    flex-direction: row;
+    gap: 0;
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .slider-item {
+    min-width: 100%;
+    max-width: 100%;
+    scroll-snap-align: start;
+  }
+
+  .slider-buttons {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    width: 100%;
+    justify-content: space-between;
+    transform: translateY(-50%);
+    padding: 0 10px;
+  }
+
+  .slider-btn {
+    width: 35px;
+    height: 35px;
+  }
+
+  .footer-buttons {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+/* Desktop-specific styles */
+@media only screen and (min-width: 481px) {
+  .slider-buttons {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    transform: translateY(-50%);
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+  }
+
+  .slider-btn {
+    width:35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    background-color: #ffc107;
+    border: none;
+    border-radius: 0px; /* Optional: make the buttons circular */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .slider-btn:hover {
+    background-color: #e0a906;
+    transform: scale(1.1);
+  }
+}

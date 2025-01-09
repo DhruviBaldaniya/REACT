@@ -1,0 +1,119 @@
+/* Section styling */
+.team-section {
+  padding: 2rem;
+}
+
+/* Header section */
+.team-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 2rem;
+  justify-content: center;
+  gap: 645px;
+}
+
+.team-header h1 {
+  font-size: 27px;
+  color: #333;
+  text-transform: uppercase;
+  margin: 0;
+}
+.team-header span {
+  border-bottom: 3px solid #f3b91b;
+}
+
+/* Team container */
+.team-container {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap; /* Wrap content if screen width is smaller */
+}
+
+/* Individual team card */
+.team-card {
+  display: flex;
+  flex-direction: column;
+  align-items: self-start;
+  width: 300px;
+  overflow: hidden;
+}
+
+/* Image container */
+.image-container {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  overflow: hidden;
+}
+
+.team-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-bottom: 1px solid #ddd;
+}
+
+/* Hover effect for team card */
+.team-card:hover .image-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6); /* Dark overlay with opacity */
+  z-index: 1;
+}
+
+.team-card:hover .social-icons-about {
+  opacity: 1;
+  transform: translateY(0); /* Slide-up effect */
+}
+
+.social-icons-about {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px); /* Initially hidden below */
+  display: flex;
+  gap: 10px;
+  z-index: 2;
+  opacity: 0; /* Initially hidden */
+  transition: all 0.3s ease-in-out;
+}
+
+.social-icons-about a {
+  width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+  color: #333;
+  border-radius: 50%;
+  text-decoration: none;
+  font-size: 18px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.social-icons-about a:hover {
+  background-color: #f3b91b; /* Highlight color */
+  color: #fff;
+}
+
+/* Team info (name and role) */
+.team-info {
+  text-align: left;
+  padding: 15px 0px;
+}
+
+.team-info h3 {
+  font-size: 17px;
+  color: #333;
+}
+
+.team-info p {
+  font-size: 0.9rem;
+  color: #555;
+}

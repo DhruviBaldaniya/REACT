@@ -1,0 +1,118 @@
+/* Section styling */
+.ourproject-section {
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Center content vertically */
+    padding: 65px;
+    gap: 25px;
+    margin-left: 165px;
+    max-width: 1149px; /* Restrict max width for balanced layout */
+    height: 100vh; /* Make the section take full viewport height */
+    box-sizing: border-box; /* Include padding in height calculations */
+  }
+  
+  /* Main image container */
+  .main-image {
+    flex: 1.5; /* Slightly larger size for the main image */
+  }
+  
+  .main-image img {
+    width: 641px; /* Maintain width as specified */
+    height: auto; /* Keep aspect ratio */
+  }
+  
+  /* Side images container */
+  .side-images {
+    flex: 1; /* Smaller area for the side images */
+    display: flex;
+    gap: 20px;
+    flex-direction: column; /* Stack side images vertically */
+    align-items: flex-start; /* Align images to the left */
+  }
+  
+  /* Individual side image */
+  .side-image {
+    position: relative;
+    width: 70%; /* 70% width of the container */
+    height: 70%; /* 70% height of the container */
+    overflow: hidden; /* Ensure no overflow */
+  }
+  
+  .side-image img {
+    width: 100%; /* Fill the side image container */
+    height: 100%; /* Fill the side image container */
+    object-fit: cover; /* Ensure image fits without distortion */
+  }
+  /* Responsive Styles */
+@media (max-width: 768px) {
+  .ourproject-section {
+    flex-direction: column; /* Stack main image and side images vertically */
+    justify-content: flex-start; /* Align items to the top */
+    align-items: center; /* Center content horizontally */
+    padding: 20px; /* Reduce padding for smaller screens */
+    gap: 20px; /* Reduce gap for smaller screens */
+    margin-left: 0; /* Remove left margin */
+    max-width: 100%; /* Allow full width on smaller screens */
+    height: auto; /* Adjust height to fit content */
+  }
+
+  /* Main image container */
+  .main-image {
+    flex: none; /* Disable flex resizing */
+    width: 100%; /* Main image takes full width */
+    text-align: center; /* Center the image horizontally */
+  }
+
+  .main-image img {
+    width: 100%; /* Make the main image responsive */
+    height: auto; /* Maintain aspect ratio */
+  }
+
+  /* Side images container */
+  .side-images {
+    flex-direction: row; /* Arrange side images in a row */
+    flex-wrap: wrap; /* Wrap images to the next line if needed */
+    justify-content: center; /* Center align side images */
+    gap: 15px; /* Reduce gap between side images */
+    width: 100%; /* Full width for the container */
+  }
+
+  /* Individual side image */
+  .side-image {
+    width: 45%; /* Make side images take 45% width each */
+    height: auto; /* Allow height to adjust based on content */
+  }
+
+  .side-image img {
+    width: 100%; /* Responsive width */
+    height: auto; /* Maintain aspect ratio */
+    object-fit: cover; /* Ensure proper scaling */
+  }
+}
+
+@media (max-width: 480px) {
+  .ourproject-section {
+    padding: 15px; /* Further reduce padding on very small screens */
+    gap: 15px; /* Reduce gap between images */
+  }
+
+  .main-image img {
+    width: 100%; /* Main image takes full width */
+    height: auto; /* Maintain aspect ratio */
+  }
+
+  .side-images {
+    flex-direction: column; /* Stack side images vertically */
+    gap: 10px; /* Reduce gap further for small screens */
+  }
+
+  .side-image {
+    width: 100%; /* Side images take full width */
+    height: auto; /* Allow height to adjust */
+  }
+
+  .side-image img {
+    width: 100%; /* Responsive width */
+    height: auto; /* Maintain aspect ratio */
+  }
+}

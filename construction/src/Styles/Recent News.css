@@ -1,0 +1,110 @@
+/* Main Styles */
+.recent-news {
+  padding: 50px 20px;
+  background-color: #f9f9f9;
+  position: relative;
+}
+
+/* Header Section */
+.header-and-slider {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+
+.section-header {
+  text-align: left;
+  margin: 0;
+  font-size: 23px;
+}
+
+.section-header span {
+  border-bottom: 3px solid #f3b91b;
+  font-size: 23px;
+  text-transform: uppercase;
+}
+
+/* News Container */
+.news-container {
+  display: grid;
+  gap: 20px; /* Space between cards */
+}
+
+.news-card {
+  background-color: white;
+  overflow: hidden;
+  text-align: center;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: Add shadow */
+}
+
+.news-image {
+  width: 100%;
+  height: 200px; /* Consistent height */
+  object-fit: cover;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.news-card h2 {
+  font-size: 20px;
+  margin: 15px 14px 10px;
+  color: #333;
+  text-align: left;
+}
+
+.news-card p {
+  font-size: 0.9rem;
+  margin: 0 15px 20px;
+  color: #666;
+  line-height: 1.5;
+  text-align: left;
+}
+
+.news-meta {
+  display: flex;
+  justify-content: left;
+  gap: 10px;
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: #948b8b;
+  padding-left: 14px;
+  text-align: left;
+}
+
+.news-meta span {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.news-meta .bi {
+  font-size: 0.9rem;
+  color: #f3b91b;
+}
+
+/* Mobile View (Max Width: 480px) */
+@media only screen and (max-width: 480px) {
+  .news-container {
+    display: contents; /* Use display: contents to flatten the layout */
+  }
+
+  .news-card {
+    display: block; /* Ensure the cards are still block elements */
+    margin-bottom: 20px; /* Space between stacked cards */
+  }
+}
+
+/* Tablet View (Max Width: 768px) */
+@media only screen and (max-width: 768px) {
+  .news-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Two cards on the first row */
+    grid-template-rows: auto auto; /* Two rows */
+    gap: 20px; /* Space between cards */
+  }
+
+ 
+}

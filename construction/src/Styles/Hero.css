@@ -1,0 +1,92 @@
+/* General Styles for the Home Page */
+.home {
+    height: 500px; /* Set a fixed height of 600px */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .home-background {
+    position: relative;
+    width: 100%;
+    height: 100%; /* Ensure it matches the parent height */
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .home-background::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Black overlay with opacity */
+    z-index: 1;
+  }
+  
+  .home-content {
+    position: relative;
+    color: white;
+    text-align: center;
+    padding: 20px 40px;
+    z-index: 2; /* Ensure content appears above the overlay */
+  }
+  
+  .home-title {
+    font-size: 3rem; /* Adjust as needed */
+    margin-bottom: 20px;
+    text-transform: uppercase;
+  }
+  
+  .home-description {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    line-height: 1.5;
+  }
+  
+  .home-button {
+    font-size: 1rem;
+    padding: 10px 20px;
+    color: white;
+    background-color: #f3b91b;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .home-button:hover {
+    background-color: #d89a16; /* Slightly darker shade for hover effect */
+  }
+/* responsive styles */
+@media only screen and (max-width: 480px) {
+  .home-background {
+    position: relative;
+    width: 100%;
+    height: 240px; /* Ensure it matches the parent height */
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+.home {
+  height: 240px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.home-title {
+  font-size: 35px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.home-description {
+  font-size: 16px;
+  margin-bottom: 30px;
+  line-height: 1.5;
+}
+}

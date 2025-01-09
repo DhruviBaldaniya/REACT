@@ -1,0 +1,17 @@
+.read-more-btn {
+    background-color: #fff;
+    color: #f3b91b;
+    padding: 10px 20px;
+    border: 2px solid #f3b91b;
+    cursor: pointer;
+    margin-bottom: 20px;
+    transition: background-color 0.3s ease;
+  }
+  .read-more-btn:hover {
+    background-color: #f3b91b;
+    color: #fff;
+  }
+  .button-btn{
+    text-align: left;
+    margin-left: 15px;
+  }

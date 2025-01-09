@@ -1,0 +1,122 @@
+/* General Styles */
+.featured-container {
+  background-color: #111;
+  color: #fff;
+  padding: 20px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.header-feature {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: center; /* Center-align title */
+  margin-bottom: 30px;
+  padding-top: 30px;
+}
+
+.featured-title {
+  font-size: 23px;
+  border-bottom: 3px solid #ffc107;
+  padding-bottom: 5px;
+  margin: 0;
+  text-align: center;
+}
+
+.featured-works {
+  display: flex;
+  gap: 20px;
+  overflow: hidden; /* Prevent extra cards from being visible */
+  scroll-behavior: smooth;
+  width: 100%;
+  justify-content: center;
+}
+
+.featured-item {
+  width: 300px; /* Fixed width for the card */
+  text-align: center;
+  overflow: hidden;
+}
+
+.featured-image {
+  width: 100%; /* Full width of the container */
+  height: 250px; /* Fixed height for all images */
+  object-fit: cover; /* Ensures images fill the area while maintaining aspect ratio */
+  display: block; /* Ensures no extra space under images */
+}
+
+
+/* Media Query for Tablets (768px and below) */
+@media (max-width: 768px) {
+  .header-feature {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding-left: 0;
+    gap: 15px;
+  }
+
+  .featured-works {
+    flex-wrap: wrap; /* Allow cards to wrap */
+    gap: 15px;
+    justify-content: left;
+  }
+
+  .featured-item {
+    width: 45%; /* Two cards per row on tablets */
+  }
+
+  .featured-image {
+    height: 200px; /* Adjust image height for smaller screens */
+  }
+}
+
+/* Media Query for Mobile (480px and below) */
+@media (max-width: 480px) {
+  .header-feature {
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .featured-title {
+    font-size: 20px; /* Reduce font size for smaller screens */
+  }
+
+  .featured-works {
+    display: flex;
+    flex-direction: row; /* Ensure horizontal scrolling */
+    overflow-x: scroll; /* Enable horizontal scrolling */
+    gap: 0;
+    scroll-snap-type: x mandatory; /* Snap to each card */
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling for mobile */
+  }
+
+  .featured-item {
+    width: 100%; /* One card per row on mobile */
+  }
+
+  .featured-image {
+    height: 180px; /* Adjust image height for mobile screens */
+  }
+
+  .slider-buttons {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    width: 100%;
+    justify-content: space-between;
+    transform: translateY(-50%);
+    padding: 0 10px;
+  }
+
+  .slider-btn {
+    width: 50px;
+    height: 50px;
+  }
+}

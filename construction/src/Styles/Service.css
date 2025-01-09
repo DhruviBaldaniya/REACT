@@ -1,0 +1,50 @@
+.services-section {
+  position: relative;
+  background-image: url('../../src/images/Services/hero.png');
+  background-size: cover;
+  background-position: center;
+  padding: 120px 20px;
+  text-align: center;
+  color: #fff;
+  overflow: hidden; /* Ensure the ::before element is contained */
+}
+
+.services-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4); /* Black color with 50% opacity */
+  z-index: 1; /* Place behind the text */
+}
+
+.services-section .services-content {
+  position: relative;
+  z-index: 2; /* Place content above the overlay */
+}
+
+.services-section h2 {
+  font-size: 36px;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+
+.services-section p {
+  font-size: 16px;
+}
+
+@media (max-width: 768px) {
+  .services-section {
+    padding: 60px 20px;
+  }
+
+  .services-section h2 {
+    font-size: 28px;
+  }
+
+  .services-section p {
+    font-size: 14px;
+  }
+}

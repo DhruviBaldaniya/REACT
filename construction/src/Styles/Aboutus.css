@@ -1,0 +1,102 @@
+/* Container Styles */
+.about-us {
+    padding: 40px 20px;
+    text-align: left;
+    padding-left: 20px;
+    background-color: #ffffff;
+  }
+  
+  .about-us-heading {
+    font-size: 25px;
+    color: #000000;
+    margin-bottom: 10px;
+    padding-left: 0px;
+    text-align: center;
+  }
+  
+  .underline {
+    width: 60px;
+    height: 3px;
+    background-color: #f3b91b;
+    margin-bottom: 30px;
+    margin-left: 590px;
+  }
+  
+  /* Card Container */
+  .about-us-container {
+    display: flex;
+    justify-content: center; /* Center the cards horizontally */
+    align-items: center;
+    gap: 20px;
+    max-width: 1030px; /* Set a max-width for proper alignment */
+    margin: 0 auto; /* Center the container itself */
+    flex-wrap: wrap; /* Ensure responsiveness on smaller screens */
+  }
+  
+  /* Individual Cards */
+  .about-us-card {
+    background-color: #fff; /* White background for each card */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for better visual separation */
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 300px; /* Set a fixed width for the cards */
+  }
+  
+  /* Icons */
+  .icon-container {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .about-us-icon {
+    width: 80px; /* Uniform icon size */
+    height: 80px;
+    margin-bottom: 15px;
+    background-color: #f0f0f0; /* Light gray background for icon circle */
+    border-radius: 50%; /* Circular shape */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  /* Card Titles */
+  .about-us-title {
+    font-size: 18px;
+    color: #000000;
+    margin: 10px 0;
+  }
+  
+  /* Descriptions */
+  .about-us-description {
+    font-size: 14px;
+    color: #666666;
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .about-us-container {
+      display: grid; /* Using grid to align cards */
+      grid-template-columns: repeat(2, 1fr); /* 2 cards per row on top */
+      grid-template-rows: auto auto; /* 2 rows (one for the top 2 cards, one for the bottom card) */
+      gap: 20px; /* Space between cards */
+    }
+  
+    .about-us-card {
+      width: 100%; /* Take full width on smaller screens */
+      max-width: 400px; /* Prevent cards from being too wide */
+    }
+  }
+  @media (max-width: 576px) {
+    .about-us-container {
+    grid-template-columns: repeat(1, 1fr); /* 1 column on small screens */
+      gap: 20px; /* Maintain adequate spacing */
+  }
+}
